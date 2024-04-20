@@ -29,6 +29,17 @@ export default function Login({ navigation }) {
     }
   }, [email, senha]);
 
+  const verifyToken = async () => {
+    const myToken = await AsyncStorage.getItem("token");
+    if (myToken) {
+      navigation.navigate("home");
+    }
+  };
+
+  useEffect(() => {
+    verifyToken();
+  }, []);
+
   return (
     <SafeAreaView style={styles.mainContainer}>
       <View style={styles.titleContainer}>
