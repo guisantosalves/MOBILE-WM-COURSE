@@ -1,7 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "./screens/homepage/homepage";
-import { KeyboardAvoidingView } from "react-native";
-import { View } from "react-native";
+import { Entypo } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 export default function TabNavigator() {
@@ -10,7 +9,13 @@ export default function TabNavigator() {
       <Tab.Screen
         name="Home"
         component={Home}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => {
+            return <Entypo name="home" size={18} color="black" />;
+          },
+          tabBarShowLabel: false,
+        }}
       />
     </Tab.Navigator>
   );

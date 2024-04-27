@@ -15,7 +15,9 @@ export default function Card({ navigation, servInfo }) {
         <TouchableOpacity
           style={styles.buton}
           activeOpacity={0.8}
-          onPress={(ev) => navigation.navigate("Service")}
+          onPress={(ev) =>
+            navigation.navigate("Service", { serviceId: servInfo._id })
+          }
         >
           <MaterialIcons name="arrow-forward-ios" size={24} color="#6A7175" />
         </TouchableOpacity>
