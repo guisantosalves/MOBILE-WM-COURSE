@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import Service from "./screens/service/service";
 import TabNavigator from "./TabNavigator";
 import Login from "./screens/login/login";
+import ServiceDetails from "./screens/serviceDetails/serviceDetails";
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +25,11 @@ export default function App() {
         <Stack.Screen
           name="Login"
           component={Login}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ServiceDetails"
+          component={ServiceDetails}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
