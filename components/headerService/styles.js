@@ -4,7 +4,8 @@ export const styles = StyleSheet.create({
   mainContainer: {
     alignItems: "center",
     justifyContent: "center",
-    height: "15%",
+    height: 150,
+    paddingBottom: 30,
     borderBottomColor: "#BCBCBC",
     borderBottomWidth: 1,
   },

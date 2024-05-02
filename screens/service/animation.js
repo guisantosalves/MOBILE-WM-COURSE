@@ -15,7 +15,7 @@ const Animation = ({ children, styles, statusCode }) => {
         })
       ).start();
     }
-  }, [fadeAnim]);
+  }, [fadeAnim, statusCode]);
 
   return (
     <Animated.View style={{ ...styles, opacity: fadeAnim }}>
