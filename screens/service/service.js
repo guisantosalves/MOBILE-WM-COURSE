@@ -18,6 +18,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import Button from "../../components/button/button";
 import Animation from "./animation";
+import { Platform } from "react-native";
 
 export default function Service({ route, navigation }) {
   // id chosen service
@@ -128,18 +129,25 @@ export default function Service({ route, navigation }) {
     }
   };
 
-  const finalizarAtendimento = () => {
+  const finalizarAtendimento = async () => {
     const serviceDTO = {
       ...currService,
       status: 2,
     };
 
     // padding id, dto
-    const response = servicoService.updateServico(serviceDTO._id, serviceDTO);
+    const response = await servicoService.updateServico(
+      serviceDTO._id,
+      serviceDTO
+    );
 
     if (response) {
+      const newOne = {
+        ...currService,
+        status: response.status,
+      };
+      setCurrService(newOne);
       alert("finalizado com sucesso!");
-      setCurrService(serviceDTO);
     } else {
       alert("impossível finalizar atendimento!");
     }
@@ -148,7 +156,7 @@ export default function Service({ route, navigation }) {
   return (
     <SafeAreaView style={styles.mainContainer}>
       <ScrollView
-        style={{ flex: 1 }}
+        contentContainerStyle={Platform.OS --- "android" ? { flexGrow: 1 } : {}}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
