@@ -1,10 +1,16 @@
 import React, { useCallback, useEffect } from "react";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { userService } from "../../modules/user/service";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import JWT from "expo-jwt";
-import HeaderPerfil from "../../components/headerPerfil/headerPerfil";
+import HeaderPerfil from "../../components/header_perfil/headerPerfil";
+import PerfilOption from "../../components/perfil_option/perfilOption";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { styles } from "./styles";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import Feather from "@expo/vector-icons/Feather";
+import EvilIcons from "@expo/vector-icons/EvilIcons";
 
 const Perfil = () => {
   const [data, setData] = React.useState();
@@ -37,6 +43,40 @@ const Perfil = () => {
   return (
     <SafeAreaView>
       <HeaderPerfil nome={data?.nome ?? ""} />
+      <View style={styles.wrapOpt}>
+        <View style={styles.containerOptions}>
+          <PerfilOption
+            Icon={
+              <Ionicons name="newspaper-outline" size={24} color="#BCBCBC" />
+            }
+            title={"Ultimos serviços"}
+            desc={"Minhas informações da conta"}
+          />
+          <PerfilOption
+            Icon={
+              <MaterialCommunityIcons
+                name="newspaper-variant-multiple"
+                size={24}
+                color="#BCBCBC"
+              />
+            }
+            title={"Meus dados"}
+            desc={"Minhas informações da conta"}
+          />
+        </View>
+        <View style={styles.containerOptions}>
+          <PerfilOption
+            Icon={<Feather name="help-circle" size={24} color="#BCBCBC" />}
+            title={"Ajuda"}
+            desc={""}
+          />
+          <PerfilOption
+            Icon={<EvilIcons name="gear" size={24} color="#BCBCBC" />}
+            title={"Configurações"}
+            desc={""}
+          />
+        </View>
+      </View>
     </SafeAreaView>
   );
 };

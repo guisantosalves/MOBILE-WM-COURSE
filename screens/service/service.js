@@ -12,7 +12,7 @@ import {
   RefreshControl,
 } from "react-native";
 import { servicoService } from "../../modules/service_module/service";
-import HeaderService from "../../components/headerService/headerService";
+import HeaderService from "../../components/header_service/headerService";
 import { styles } from "./styles";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
