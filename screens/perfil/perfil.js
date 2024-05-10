@@ -12,7 +12,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import Feather from "@expo/vector-icons/Feather";
 import EvilIcons from "@expo/vector-icons/EvilIcons";
 
-const Perfil = () => {
+const Perfil = ({ navigation }) => {
   const [data, setData] = React.useState();
 
   useEffect(() => {
@@ -40,6 +40,14 @@ const Perfil = () => {
     }
   }, []);
 
+  const defaultAction = () => {
+    return;
+  };
+
+  const goToPerfilData = () => {
+    navigation.navigate("PerfilData", { currUserData: data });
+  };
+
   return (
     <SafeAreaView>
       <HeaderPerfil nome={data?.nome ?? ""} />
@@ -51,6 +59,7 @@ const Perfil = () => {
             }
             title={"Ultimos serviços"}
             desc={"Minhas informações da conta"}
+            action={defaultAction}
           />
           <PerfilOption
             Icon={
@@ -62,6 +71,7 @@ const Perfil = () => {
             }
             title={"Meus dados"}
             desc={"Minhas informações da conta"}
+            action={goToPerfilData}
           />
         </View>
         <View style={styles.containerOptions}>
@@ -69,11 +79,13 @@ const Perfil = () => {
             Icon={<Feather name="help-circle" size={24} color="#BCBCBC" />}
             title={"Ajuda"}
             desc={""}
+            action={defaultAction}
           />
           <PerfilOption
             Icon={<EvilIcons name="gear" size={24} color="#BCBCBC" />}
             title={"Configurações"}
             desc={""}
+            action={defaultAction}
           />
         </View>
       </View>

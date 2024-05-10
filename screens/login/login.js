@@ -4,10 +4,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./styles";
 import { AuthService } from "../../modules/auth/service";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useIsFocused } from "@react-navigation/native";
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const isFocused = useIsFocused();
 
   const submit = useCallback(async () => {
     const loginInfo = {
@@ -39,7 +41,7 @@ export default function Login({ navigation }) {
 
   useEffect(() => {
     verifyToken();
-  }, []);
+  }, [isFocused]);
 
   return (
     <SafeAreaView style={styles.mainContainer}>

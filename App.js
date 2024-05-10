@@ -3,7 +3,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import Service from "./screens/service/service";
 import TabNavigator from "./TabNavigator";
 import Login from "./screens/login/login";
-import ServiceDetails from "./screens/serviceDetails/serviceDetails";
+import ServiceDetails from "./screens/service_details/serviceDetails";
+import PerfilData from "./screens/perfil_data/perfilData";
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +31,11 @@ export default function App() {
         <Stack.Screen
           name="ServiceDetails"
           component={ServiceDetails}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="PerfilData"
+          component={PerfilData}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
