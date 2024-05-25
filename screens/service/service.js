@@ -156,7 +156,7 @@ export default function Service({ route, navigation }) {
   return (
     <SafeAreaView style={styles.mainContainer}>
       <ScrollView
-        contentContainerStyle={Platform.OS --- "android" ? { flexGrow: 1 } : {}}
+        contentContainerStyle={Platform.OS === "android" ? { flexGrow: 1 } : {}}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }

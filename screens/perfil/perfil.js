@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { userService } from "../../modules/user/service";
@@ -14,10 +14,11 @@ import EvilIcons from "@expo/vector-icons/EvilIcons";
 
 const Perfil = ({ navigation }) => {
   const [data, setData] = React.useState();
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     gettingCurrentUser();
-  }, []);
+  }, [refresh]);
 
   const gettingCurrentUser = useCallback(async () => {
     const TokenFromAS = await AsyncStorage.getItem("token");
@@ -33,7 +34,7 @@ const Perfil = ({ navigation }) => {
       const idCurrUser = decodedData && decodedData.id ? decodedData.id : "";
 
       if (idCurrUser) {
-        // user info
+        // user info (funcionario)
         const dataCurrUser = await userService.findUserById(idCurrUser);
         setData(dataCurrUser);
       }
@@ -44,8 +45,15 @@ const Perfil = ({ navigation }) => {
     return;
   };
 
+  const updatedDataRefresh = () => {
+    setRefresh(!refresh);
+  };
+
   const goToPerfilData = () => {
-    navigation.navigate("PerfilData", { currUserData: data });
+    navigation.navigate("PerfilData", {
+      currUserData: data,
+      refresh: () => updatedDataRefresh(),
+    });
   };
 
   return (
